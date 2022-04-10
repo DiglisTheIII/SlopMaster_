@@ -23,6 +23,8 @@ import javax.annotation.Nonnull;
 
 public class ModCommands extends ListenerAdapter {
 
+    public File f = new File("C:/Users/Desktop/botgifs/log.txt");
+
     @Override
     public void onMessageReceived(@Nonnull MessageReceivedEvent event) {
 
@@ -82,7 +84,6 @@ public class ModCommands extends ListenerAdapter {
             }
         }
 
-        File f = new File("");
         if(args[0].equalsIgnoreCase(prefix + "nuke")) {
             if(event.getMember().isOwner() || event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                 scts.deleteMessage(event);
