@@ -17,12 +17,16 @@ public class BotDriverClass {
 
     public static void main(String[] args) throws LoginException, IOException {
         String token = Files.readAllLines(Paths.get("C:/Users/mmmmm/Desktop/botgifs/token.txt")).get(0);
-        JDA jda = JDABuilder.createDefault(token, GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_PRESENCES, GatewayIntent.GUILD_VOICE_STATES, GatewayIntent.GUILD_WEBHOOKS)
+        JDA jda = JDABuilder.createDefault(token, GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MEMBERS,
+                        GatewayIntent.GUILD_PRESENCES, GatewayIntent.GUILD_VOICE_STATES, GatewayIntent.GUILD_WEBHOOKS)
                 .disableCache(CacheFlag.EMOTE)
-                .enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_PRESENCES, GatewayIntent.GUILD_VOICE_STATES, GatewayIntent.GUILD_WEBHOOKS)
-                .enableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.ONLINE_STATUS, CacheFlag.ACTIVITY, CacheFlag.VOICE_STATE, CacheFlag.ROLE_TAGS)
+                .enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_PRESENCES,
+                        GatewayIntent.GUILD_VOICE_STATES, GatewayIntent.GUILD_WEBHOOKS)
+                .enableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.ONLINE_STATUS, CacheFlag.ACTIVITY,
+                        CacheFlag.VOICE_STATE, CacheFlag.ROLE_TAGS)
                 .setMemberCachePolicy(MemberCachePolicy.ALL)
-                .addEventListeners(new Commands(), new ModCommands(), new PrivateMessages(), new JoinEventHandler(), new LeaveEventHandler())
+                .addEventListeners(new Commands(), new ModCommands(), new PrivateMessages(), new JoinEventHandler(),
+                        new LeaveEventHandler())
                 .setActivity(Activity.playing("slopping innocent people (i hate them)"))
                 .setStatus(OnlineStatus.ONLINE)
                 .build();
