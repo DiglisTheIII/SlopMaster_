@@ -23,7 +23,7 @@ import javax.annotation.Nonnull;
 
 public class ModCommands extends ListenerAdapter {
 
-    public File f = new File("C:/Users/Desktop/botgifs/log.txt");
+    public File f = new File("C:/Users/Mason Wells/Desktop/Misc/bot shit/log.txt");
 
     @Override
     public void onMessageReceived(@Nonnull MessageReceivedEvent event) {
@@ -83,6 +83,7 @@ public class ModCommands extends ListenerAdapter {
                 scts.sendMessage(event, "You cannot do that", true);
             }
         }
+
 
         if(args[0].equalsIgnoreCase(prefix + "nuke")) {
             if(event.getMember().isOwner() || event.getMember().hasPermission(Permission.ADMINISTRATOR)) {

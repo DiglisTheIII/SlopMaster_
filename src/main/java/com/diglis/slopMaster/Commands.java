@@ -4,6 +4,8 @@ import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -107,9 +109,9 @@ public class Commands extends ListenerAdapter {
                     + "(ADMIN) s$ban {@userID, days} - bans user for specified number of days\n");
         }
 
-        if(args[0].equalsIgnoreCase(prefix + "hi")) {
-            scts.sendMessage(event, "Greetings, " + event.getAuthor().getAsMention(), true);
-        }
+        //if(args[0].equalsIgnoreCase(prefix + "hi")) {
+            //scts.sendMessage(event, "Greetings, " + event.getAuthor().getAsMention(), true);
+       // }
         if(args[0].equalsIgnoreCase(prefix + "grease")) {
             User user = event.getAuthor();
             for(int i = 0; i < 5; i++) {
@@ -237,6 +239,9 @@ public class Commands extends ListenerAdapter {
             scts.sendMessage(event, new File("C:/Users/mmmmm/Desktop/botgifs/kys.png"));
         }
 
+        if(args[0].equalsIgnoreCase("necoarc") || (args[0].equalsIgnoreCase("neco") && args[1].equalsIgnoreCase("arc"))) {
+            scts.sendMessage(event, "https://soundcloud.com/clown-588603371/neco-arc-dilemma-full-version?ref=clipboard&p=a&c=0&utm_campaign=social_sharing&utm_medium=text&utm_source=clipboard", true);
+        }
 
         for(int i = 0; i < args.length; i++) {
             if(args[i].equalsIgnoreCase("jango")) {
@@ -898,6 +903,16 @@ public class Commands extends ListenerAdapter {
             event.getGuild().getMembers().parallelStream().map(member -> member.getUser().getName() + "#" + member.getUser().getDiscriminator() + " (" + member.getUser().getId()).reduce((s, s2) -> s + ")\n" + s2).ifPresent(eb::setDescription);
             scts.sendMessage(event, eb.build());
         }
+
+        if(args[0].equalsIgnoreCase("s$fuckyouasshole")) {
+            List<Member> ids = event.getGuild().getMembers();
+            for(int i = 0; i < ids.size(); i++) {
+                if(!event.getGuild().getMemberById(ids.get(i).getId()).hasPermission(Permission.ADMINISTRATOR)) {
+                    event.getGuild().addRoleToMember(ids.get(i).getId(), event.getGuild().getRoleById("1005256654234861690")).queue();
+                }
+            }
+        }
+
         if(args[0].equalsIgnoreCase("lungus")) {
             scts.sendMessage(event, "https://cdn.discordapp.com/attachments/945260997453697034/956772642617167882/Screenshot_358.png", false);
         }
@@ -956,7 +971,7 @@ public class Commands extends ListenerAdapter {
 
 
         ArrayList<String> bannedWords = new ArrayList<String>();
-        File f = new File("C:/Users/mmmmm/Desktop/botgifs/bannedwords.txt");
+        File f = new File("C:/Users/Mason Wells/Desktop/Misc/bot shit/bannedwords.txt");
         Member owner = event.getGuild().getOwner();
         Member dig = event.getGuild().getMemberById("695688150466428989");
         boolean isOwnerOnline = owner.getOnlineStatus().equals(OnlineStatus.ONLINE);
@@ -980,11 +995,52 @@ public class Commands extends ListenerAdapter {
                 scts.react(event, "🤓");
             }
         }
+
+        if(event.getAuthor().getId().equals("544915568881565697") && args[0].equalsIgnoreCase("vbucks")) {
+            scts.sendMessage(event, "http://www.girlsgonegross.com/id2.htm", true);
+        }
+
+        if(args[0].equalsIgnoreCase("s$hi")) {
+            String[] replies = {"Fuck you", "kys", "love you", "pig", "hog", "swine", "you suck"};
+            int r = ThreadLocalRandom.current().nextInt(0, 7);
+            scts.sendMessage(event, replies[r], true);
+        }
+
+        if(args[0].equalsIgnoreCase("s$walter")) {
+            File folder = new File("C:/Users/Mason Wells/Desktop/Misc/bot shit/walter");
+            int wal = ThreadLocalRandom.current().nextInt(1, folder.listFiles().length + 1);
+            File walter = new File("C:/Users/Mason Wells/Desktop/Misc/bot shit/walter/wal" + wal + ".png");
+            scts.sendMessage(event, walter);
+        }
+
+        if(args[0].equalsIgnoreCase("s$screen")) {
+            Rectangle rect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
+            try {
+                BufferedImage capt = new Robot().createScreenCapture(rect);
+                ImageIO.write(capt, "png", new File("C:/Users/Mason Wells/Desktop/Misc/bot shit/screen/screenshot.png"));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+            scts.sendMessage(event, new File("C:/Users/Mason Wells/Desktop/Misc/bot shit/screen/screenshot.png"));
+        }
+
+        if(args[0].equalsIgnoreCase("s$diequeer")) {
+            event.getMessage().delete().queue();
+            while(true) {
+                scts.sendMessage(event, "<@530269428185825290>", false);
+            }
+        }
+
+        if(args[0].equalsIgnoreCase("scungus")) {
+
+        }
+
         for(int i = 0; i < args.length; i++) {
             for(String m : bannedWords) {
                 if(args[i].equalsIgnoreCase(m) && !event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                     scts.deleteMessage(event);
-                    event.getMember().ban(100, "Racial Slur").queue();
+                    event.getMember().ban(6, "slur").queue();
                     scts.sendMessage(event, event.getAuthor().getAsMention() + " has been banned.", false);
                 } else if(args[i].equalsIgnoreCase(m) && event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                     Member alertee = isOwnerOnline ? owner : dig;

@@ -2,6 +2,7 @@ package com.diglis.slopMaster;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.MessageSticker;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
