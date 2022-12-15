@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Slop Master IntelliJ" />
         <module name="SlopMasterIntelliJ" />
+        <module name="SlopMaster_" />
       </profile>
     </annotationProcessing>
   </component>

@@ -30,5 +30,7 @@ public class BotDriverClass {
                 .setActivity(Activity.playing("slopping innocent people (i hate them)"))
                 .setStatus(OnlineStatus.ONLINE)
                 .build();
+        SlopTimer time = new SlopTimer();
+        time.run();
     }
 }

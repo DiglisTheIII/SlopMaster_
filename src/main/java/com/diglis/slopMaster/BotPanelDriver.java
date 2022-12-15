@@ -9,6 +9,8 @@ import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 import javax.security.auth.login.LoginException;
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -25,6 +27,7 @@ public class BotPanelDriver {
 
     public static boolean isOn = false;
     public static void main(String[] args) throws LoginException, IOException, InterruptedException {
+        new MasterTerminal();
         startupForMain();
         File f = new File("uptime.txt");
         printTimeToFile(f, false, 0);
@@ -40,23 +43,10 @@ public class BotPanelDriver {
         }
     }
 
-    public JDA startup() throws IOException, LoginException {
-        String token = Files.readAllLines(Paths.get("C:/Users/mmmmm/Desktop/botgifs/token.txt")).get(0);
-        //Caches members, messages, and builds the bot for use
-        return this.jda = JDABuilder.createDefault(token, GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_PRESENCES, GatewayIntent.GUILD_VOICE_STATES, GatewayIntent.GUILD_WEBHOOKS)
-                .disableCache(CacheFlag.EMOTE)
-                .enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_PRESENCES, GatewayIntent.GUILD_VOICE_STATES, GatewayIntent.GUILD_WEBHOOKS)
-                .enableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.ONLINE_STATUS, CacheFlag.ACTIVITY, CacheFlag.VOICE_STATE, CacheFlag.ROLE_TAGS)
-                .setMemberCachePolicy(MemberCachePolicy.ALL)
-                .addEventListeners(new Commands(), new ModCommands(), new JoinEventHandler(), new LeaveEventHandler())
-                .setActivity(Activity.playing("slopping innocent people (i hate them)"))
-                .setStatus(OnlineStatus.ONLINE).build();
-    }
-
-
     public static JDA startupForMain() throws IOException, LoginException{
-        String token = Files.readAllLines(Paths.get("C:/Users/mmmmm/Desktop/botgifs/token.txt")).get(0);
+        String token = Files.readAllLines(Paths.get("C:/Users/Mason Wells/Desktop/Misc/bot shit/token.txt")).get(0);
         //Caches members, messages, and builds the bot for use
+
         JDA jda = JDABuilder.createDefault(token, GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_PRESENCES, GatewayIntent.GUILD_VOICE_STATES, GatewayIntent.DIRECT_MESSAGES)
                 .disableCache(CacheFlag.EMOTE)
                 .enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_PRESENCES, GatewayIntent.GUILD_VOICE_STATES, GatewayIntent.DIRECT_MESSAGES)
@@ -66,10 +56,12 @@ public class BotPanelDriver {
                 .setActivity(Activity.playing("slopping innocent people (i hate them)"))
                 .setStatus(OnlineStatus.ONLINE).build();
         return jda;
+
     }
 
+
     public void shutdown() throws LoginException, IOException {
-        startup().shutdownNow();
+        startupForMain().shutdownNow();
     }
 
     public static void clearConsole() { System.out.println(System.lineSeparator()); }
@@ -79,7 +71,7 @@ public class BotPanelDriver {
             try {
                 try {
                     PrintWriter pw = new PrintWriter(new FileWriter(f, true));
-                    if(java.time.LocalDate.now() == java.time.LocalDate.now()) { //Checks on the weird, theoretically possible case that the bot is started and doesnt start printing to the file as soon as the date changes
+                    if(java.time.LocalDate.now() == java.time.LocalDate.now()) { //Checks on the weird, theoretically possible case that the bot is started and doesn't start printing to the file as soon as the date changes
                         pw.println("Current Uptime For: "  + java.time.LocalTime.now());
                         pw.close();
                     } else {

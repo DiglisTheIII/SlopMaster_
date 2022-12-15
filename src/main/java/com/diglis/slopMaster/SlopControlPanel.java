@@ -1,3 +1,4 @@
+/*
 package com.diglis.slopMaster;
 
 import java.awt.BorderLayout;
@@ -30,9 +31,7 @@ public class SlopControlPanel {
     private JFrame frame;
     private JTextField nameField;
 
-    /**
-     * Launch the application.
-     */
+
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -46,18 +45,12 @@ public class SlopControlPanel {
         });
     }
 
-    /**
-     * Create the application.
-     * @throws IOException
-     */
+
     public SlopControlPanel() throws IOException {
         initialize();
     }
 
-    /**
-     * Initialize the contents of the frame.
-     * @throws IOException
-     */
+
     public void initialize() throws IOException {
         frame = new JFrame();
         frame.setBounds(100, 100, 1069, 578);
@@ -111,10 +104,11 @@ public class SlopControlPanel {
                     } else {
                         passCorrect = false;
                     }
+                    /*
                     if(passCorrect) {
                         try {
                             BotPanelDriver drver = new BotPanelDriver();
-                            drver.startup();
+                            //drver.startup();
                         } catch (LoginException | IOException e1) {
                             // TODO Auto-generated catch block
                             e1.printStackTrace();
@@ -125,7 +119,8 @@ public class SlopControlPanel {
                     e1.printStackTrace();
                 }
 
-            }
+
+
         });
 
         shutdown.addActionListener(new ActionListener() {
@@ -212,3 +207,4 @@ public class SlopControlPanel {
 
     }
 }
+*/
